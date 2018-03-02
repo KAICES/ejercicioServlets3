@@ -5,8 +5,10 @@
  */
 package co.edu.uniminuto.arqSw.ejercicioServlets.tallerTres.servlets;
 
+import co.edu.uniminuto.arqSw.ejercicioServlets.tallerTres.vos.FormularioPersonaVo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +16,17 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Administrador
+ * @autores
+ * Cesar Ramirez == 378938
+ * Lizeth Castro == 310894
  */
+
 public class ServletPersona extends HttpServlet {
 
+    
+    private FormularioPersonaVo miForm;
+    DecimalFormat formateador = new DecimalFormat("###,###.##");
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,17 +40,77 @@ public class ServletPersona extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
+        String nombreCarrera;
+        
+        switch (miForm.getCarrera()) {
+
+            case 1:
+
+                nombreCarrera = "Administracion de empresas";
+            break;
+
+            case 2:
+
+                nombreCarrera = "Ingenieria de sistemas";
+            break;
+			
+            case 3:
+                
+                nombreCarrera = "Matematicas";
+            break;
+                
+            default:
+                    
+                nombreCarrera = "ninguna";
+            break;    
+
+        }        
+    
         try {
-            /* TODO output your page here. You may use following sample code. */
+            /* TODO output your page here. You may use following sample code. */   
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletPersona</title>");            
+            out.println("<title>TALLER SERLVET-RESPONSE</title>");            
             out.println("</head>");
+            
             out.println("<body>");
-            out.println("<h1>Servlet ServletPersona at " + request.getContextPath() + "</h1>");
+//            out.println("<h1>TALLER SERVLET</h1><br>");
+//            out.println("<form action='ServletEjercicio' method='POST'>");
+//            out.println(" Nombre:<br>");
+//            out.println("<input type ='text' name='nombre'></input><br>");
+//            out.println(" <br>");
+//            out.println("Edad<br>");
+//            out.println("<input type ='text' name='edad'></input><br>");
+//            out.println(" <br>");
+//            out.println(" Carrera<br><br>");
+//            out.println("<select name='carrera'>");
+//            out.println("<option value='0'>Seleccione Carrera</option>");
+//            out.println(" <option value='1' >Administracion de empresas</option>");
+//            out.println(" <option value='2'>Ingenieria de sistemas</option> ");
+//            out.println("<option value='3'>Matematicas</option><br> ");
+//            out.println("</select> <br><br>");
+//            out.println("Ingreso mensual: <br><br>");
+//            out.println("<input type ='text' name='ingresoMensual'></input>");
+//            out.println(" <br>");
+//            out.println(" <br>");
+//            out.println("<input type='submit' /> ");           
+//            out.println(" <br>");
+//            out.println(" <br>");
+//            out.println(" <br>");
+//            out.println(" <br>");
+            
+              out.println("<h1>Hola Sr(a) " + miForm.getNombre() + " ,usted escogio " + nombreCarrera + "</h1><br>");   
+              out.println("<h1>El costo es de $ " + formateador.format(miForm.getValorCarrera()) + "</h1>");
+                
+            
+            
             out.println("</body>");
             out.println("</html>");
+            
+            
         } finally {
             out.close();
         }
@@ -73,14 +142,80 @@ public class ServletPersona extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+             
+            String nombre = request.getParameter("nombre");
+            int edad = Integer.parseInt(request.getParameter("edad"));
+            int carrera = Integer.parseInt(request.getParameter("carrera"));            
+            double ingresoMensual;
+            
+            if ( request.getParameter("ingresoMensual") == ""){
+                
+                ingresoMensual = 0 ;                
+            }else {
+                
+            ingresoMensual = Double.parseDouble(request.getParameter("ingresoMensual"));
+            }
+            
+            double valorCarrera = 0 ;           
+            
+            switch (carrera) {
 
+            case 1:
+
+                valorCarrera = 2200000 ;
+                
+                    if ( ingresoMensual > 0 ){
+
+                    valorCarrera = valorCarrera - (2200000 * 0.10) ;				
+                    }
+
+                    break;
+			
+            case 2:
+
+                valorCarrera = 2700000 ;
+	
+                    if ( ingresoMensual > 0 ){
+
+                    valorCarrera = valorCarrera - (2700000 * 0.10) ;				
+                    }
+
+                    break;
+			
+            case 3:
+
+                valorCarrera = 3500000 ;
+                
+                    if ( ingresoMensual > 0 ){
+
+                    valorCarrera = valorCarrera - (3500000 * 0.10);				
+                    }
+                    
+                    break;
+                
+           default:
+                    
+                valorCarrera = 0 ;
+                
+               break;    
+
+        }    
+        
+        miForm = new FormularioPersonaVo (nombre,edad,carrera,valorCarrera,ingresoMensual );
+        
+         processRequest(request, response);
+    }
     /**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
      */
+    
+    
+    
+    
+    
+    
     @Override
     public String getServletInfo() {
         return "Short description";

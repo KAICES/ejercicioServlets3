@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>TALLER SERVLET</h1>
-        <form action="ServletEjercicio" method="POST">
+        <form action="ServletPersona" method="POST">
             Nombre:<br>
             <input type ="text" name="nombre"></input><br>
             <br>
@@ -21,14 +21,14 @@
             <input type ="text" name="edad"></input><br>
             <br>
             Carrera<br><br>
-            <select name="Carrera">
-            	<option value="0">Seleccione Carrera</option>
+            <select name="carrera" >
+            	<option >Seleccione Carrera</option>
                 <option value="1">Administracion de empresas</option>
                 <option value="2">Ingenieria de sistemas</option>
                 <option value="3">Matematicas</option><br>           
             </select> <br><br>
             Ingreso mensual: <br><br>
-            <input type ="text" name="ingreso mensual"></input>
+            <input type ="text" name="ingresoMensual" ></input>
             <br>            
             <br>
             <input type="submit" />            

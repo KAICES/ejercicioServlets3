@@ -12,13 +12,15 @@ public class FormularioPersonaVo {
     
     String nombre;
     int edad;
-    String carrera;
-    float ingresoMensual;
+    int carrera;
+    double valorCarrera;
+    double ingresoMensual;
 
-    public FormularioPersonaVo(String nNombre, int nedad, String ncarrera, float ningresoMensual) {
+    public FormularioPersonaVo(String nNombre, int nedad, int ncarrera, double nvalorCarrera, double ningresoMensual) {
         this.nombre = nNombre;
         this.edad = nedad;
         this.carrera = ncarrera;
+        this.valorCarrera = nvalorCarrera;        
         this.ingresoMensual = ningresoMensual;
     }
 
@@ -38,20 +40,30 @@ public class FormularioPersonaVo {
         this.edad = edad;
     }
 
-    public String getCarrera() {
+    public int getCarrera() {
         return carrera;
     }
 
-    public void setCarrera(String carrera) {
+    public void setCarrera(int carrera) {
         this.carrera = carrera;
     }
 
-    public float getIngresoMensual() {
+    public double getValorCarrera() {
+        return valorCarrera;
+    }
+
+    public void setValorCarrera(double valorCarrera) {
+        this.valorCarrera = valorCarrera;
+    }
+
+    public double getIngresoMensual() {
         return ingresoMensual;
     }
 
-    public void setIngresoMensual(float ingresoMensual) {
+    public void setIngresoMensual(double ingresoMensual) {
         this.ingresoMensual = ingresoMensual;
-    }  
+    }
+    
+
     
 }
