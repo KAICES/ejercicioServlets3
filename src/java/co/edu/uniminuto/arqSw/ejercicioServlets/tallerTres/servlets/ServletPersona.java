@@ -77,7 +77,7 @@ public class ServletPersona extends HttpServlet {
             out.println("</head>");            
             out.println("<body>");
             out.println("<h1>TALLER SERVLET</h1><br>");
-            out.println("<form action='ServletEjercicio' method='POST'>");
+            out.println("<form action='ServletPersona' method='POST'>");
             out.println(" Nombre:<br>");
             out.println("<input type ='text' name='nombre'></input><br>");
             out.println(" <br>");
