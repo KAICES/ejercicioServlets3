@@ -74,39 +74,45 @@ public class ServletPersona extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>TALLER SERLVET-RESPONSE</title>");            
-            out.println("</head>");
-            
+            out.println("</head>");            
             out.println("<body>");
-//            out.println("<h1>TALLER SERVLET</h1><br>");
-//            out.println("<form action='ServletEjercicio' method='POST'>");
-//            out.println(" Nombre:<br>");
-//            out.println("<input type ='text' name='nombre'></input><br>");
-//            out.println(" <br>");
-//            out.println("Edad<br>");
-//            out.println("<input type ='text' name='edad'></input><br>");
-//            out.println(" <br>");
-//            out.println(" Carrera<br><br>");
-//            out.println("<select name='carrera'>");
-//            out.println("<option value='0'>Seleccione Carrera</option>");
-//            out.println(" <option value='1' >Administracion de empresas</option>");
-//            out.println(" <option value='2'>Ingenieria de sistemas</option> ");
-//            out.println("<option value='3'>Matematicas</option><br> ");
-//            out.println("</select> <br><br>");
-//            out.println("Ingreso mensual: <br><br>");
-//            out.println("<input type ='text' name='ingresoMensual'></input>");
-//            out.println(" <br>");
-//            out.println(" <br>");
-//            out.println("<input type='submit' /> ");           
-//            out.println(" <br>");
-//            out.println(" <br>");
-//            out.println(" <br>");
-//            out.println(" <br>");
-            
-              out.println("<h1>Hola Sr(a) " + miForm.getNombre() + " ,usted escogio " + nombreCarrera + "</h1><br>");   
-              out.println("<h1>El costo es de $ " + formateador.format(miForm.getValorCarrera()) + "</h1>");
-                
-            
-            
+            out.println("<h1>TALLER SERVLET</h1><br>");
+            out.println("<form action='ServletEjercicio' method='POST'>");
+            out.println(" Nombre:<br>");
+            out.println("<input type ='text' name='nombre'></input><br>");
+            out.println(" <br>");
+            out.println("Edad<br>");
+            out.println("<input type ='text' name='edad' onblur='validarEdad(event)'></input><br>");
+            out.println(" <br>");
+            out.println(" Carrera<br><br>");
+            out.println("<select name='carrera'>");
+            out.println("<option>Seleccione Carrera</option>");
+            out.println("<option value='1' >Administracion de empresas</option>");
+            out.println("<option value='2'>Ingenieria de sistemas</option> ");
+            out.println("<option value='3'>Matematicas</option><br> ");
+            out.println("</select> <br><br>");
+            out.println("<div id='ingresoMes' style='display: none'>");
+            out.println("Ingreso mensual: <br><br>");
+            out.println("<input type ='text' name='ingresoMensual'></input>");
+            out.println("</div>");
+            out.println("<script>");
+            out.println("function validarEdad(e) {");
+            out.println("var edad = e.target;");
+            out.println("var ingresoMes = document.getElementById('ingresoMes');");
+            out.println("if (edad.value > 21) {");
+            out.println("ingresoMes.style.display = 'block';");
+	    out.println("}");
+            out.println("}");
+            out.println("</script> "); 
+            out.println(" <br>");
+            out.println(" <br>");
+            out.println("<input type='submit' /> ");           
+            out.println("</form>");
+            out.println(" <br>");
+            out.println(" <br>");
+            out.println(" <br>");
+            out.println("<h1>Hola Sr(a) " + miForm.getNombre() + " ,usted escogio " + nombreCarrera + "</h1><br>");   
+            out.println("<h1>El costo es de $ " + formateador.format(miForm.getValorCarrera()) + "</h1>");    
             out.println("</body>");
             out.println("</html>");
             
